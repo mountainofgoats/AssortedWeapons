@@ -16,7 +16,7 @@ namespace AssortedWeapons.Weapons
         {
 			item.shootSpeed = 10f;
 		    item.shoot = mod.ProjectileType("GalaxyBroadswordProjectile");
-			item.damage = 100;
+			item.damage = 130;
 			item.knockBack = 6f;
 			item.useStyle = 1;
 			item.useAnimation = 10;
@@ -37,16 +37,17 @@ namespace AssortedWeapons.Weapons
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(3467, 10);
-			recipe.AddIngredient(3457, 10);
-			recipe.AddIngredient(3458, 10);
-			recipe.AddIngredient(3456, 10);
-			recipe.AddIngredient(3459, 10);
+			recipe.AddIngredient(ItemID.FragmentSolar, 10);
+			recipe.AddIngredient(ItemID.FragmentVortex, 10);
+			recipe.AddIngredient(ItemID.FragmentNebula, 10);
+			recipe.AddIngredient(ItemID.FragmentStardust, 10);
+			recipe.AddIngredient(ItemID.LunarBar, 10);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-			public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        {
 				target.AddBuff(BuffID.Ichor, 300);
 				target.AddBuff(BuffID.CursedInferno, 300);
 				target.AddBuff(BuffID.Frostburn, 300);
