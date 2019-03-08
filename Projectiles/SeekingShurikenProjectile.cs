@@ -22,10 +22,16 @@ namespace AssortedWeapons.Projectiles
 		projectile.height = 26;
 		projectile.friendly = true;
 		projectile.melee = true;
-		projectile.penetrate = 10;
 		projectile.aiStyle = 0;
 		projectile.timeLeft = 100;
 		projectile.CloneDefaults(ProjectileID.Shuriken);
+		}
+
+		public override void AI()
+
+		{
+		projectile.penetrate = 10;
+		projectile.maxPenetrate = 10;
 		}
 	}
 }
