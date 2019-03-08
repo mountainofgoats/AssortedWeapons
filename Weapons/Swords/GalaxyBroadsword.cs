@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedWeapons.Weapons
+namespace AssortedWeapons.Weapons.Swords
 {
     public class GalaxyBroadsword : ModItem
     {
