@@ -16,8 +16,8 @@ namespace AssortedWeapons.Weapons
 			item.damage = 32;
 			item.knockBack = 4f;
 			item.useStyle = 1;
-			item.useAnimation = 15;
-			item.useTime = 15;
+			item.useAnimation = 20;
+			item.useTime = 20;
 			item.width = 42;
 			item.height = 48;
 			item.maxStack = 1;
@@ -26,7 +26,7 @@ namespace AssortedWeapons.Weapons
 			item.consumable = false;
 			item.noUseGraphic = false;
 			item.noMelee = false;
-			item.autoReuse = true;
+			item.autoReuse = false;
 			item.melee = true;
 
 			item.UseSound = SoundID.Item1;
