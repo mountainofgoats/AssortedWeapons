@@ -27,7 +27,8 @@ namespace AssortedWeapons.Projectiles
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
         }
-            public virtual void OnHitNPC (NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
+        {
                 target.AddBuff(BuffID.Ichor, 300);
                 target.AddBuff(BuffID.CursedInferno, 300);
                 target.AddBuff(BuffID.Frostburn, 300);
