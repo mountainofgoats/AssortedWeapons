@@ -25,6 +25,7 @@ namespace AssortedWeapons.Projectiles
 		projectile.penetrate = 10;
 		projectile.aiStyle = 0;
 		projectile.timeLeft = 100;
+		projectile.CloneDefaults(ProjectileID.Shuriken);
 		}
 	}
 }
