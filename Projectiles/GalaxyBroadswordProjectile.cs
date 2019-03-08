@@ -36,7 +36,6 @@ namespace AssortedWeapons.Projectiles
                 int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 234);
                 Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
             }
-            
         }
 
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
