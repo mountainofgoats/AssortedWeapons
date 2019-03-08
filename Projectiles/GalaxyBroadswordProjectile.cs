@@ -26,7 +26,19 @@ namespace AssortedWeapons.Projectiles
             projectile.penetrate = 10;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 234, projectile.velocity.X * -0.5f, projectile.velocity.Y * -0.5f);
         }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 234);
+                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+            }
+            Main.PlaySound(27, (int)projectile.position.X, (int)projectile.position.Y);
+        }
+
         public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
         {
                 target.AddBuff(BuffID.Ichor, 300);
