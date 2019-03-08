@@ -1,0 +1,3 @@
+author = Catsounds, Arcithan
+version = 0.1
+displayName = Assorted Weapons
