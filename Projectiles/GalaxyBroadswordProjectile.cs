@@ -1,4 +1,4 @@
-using AssortedWeapons.Weapons;
+using AssortedWeapons.Items.Weapons.Swords;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -13,7 +13,7 @@ namespace AssortedWeapons.Projectiles
     {
     public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("GalaxyBroadswordProjectile");
+            DisplayName.SetDefault("Galaxy Broadsword");
         }
 
         public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace AssortedWeapons.Projectiles
         public override void AI()
         {
             projectile.penetrate = 10;
-            projectile.timeLeft = 100;
+            projectile.timeLeft = 150;
             projectile.ignoreWater = true;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 234, projectile.velocity.X * -0.5f, projectile.velocity.Y * -0.5f);
         }

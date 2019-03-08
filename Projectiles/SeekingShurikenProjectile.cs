@@ -1,4 +1,4 @@
-using AssortedWeapons.Weapons;
+using AssortedWeapons.Items.Weapons.ThrowingWeapons;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -13,7 +13,7 @@ namespace AssortedWeapons.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SeekingShurikenProjectile");
+            DisplayName.SetDefault("Seeking Shuriken");
         }
 
         public override void SetDefaults()
@@ -43,8 +43,8 @@ namespace AssortedWeapons.Projectiles
 
             for (int i = 0; i < 200; i++)
             {
-                projectile.penetrate = 1;
-                projectile.maxPenetrate = 1;
+                projectile.penetrate = 10;
+                projectile.maxPenetrate = 10;
                 projectile.ignoreWater = true;
 
                 NPC target = Main.npc[i];
