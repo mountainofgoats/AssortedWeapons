@@ -36,8 +36,10 @@ namespace AssortedWeapons.Projectiles
                 int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 234);
                 Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
             }
-            Main.PlaySound(27, (int)projectile.position.X, (int)projectile.position.Y);
+            
         }
+
+        public override void OnHitNPC (NPC target, int damage, float knockback, bool crit)
         {
                 target.AddBuff(BuffID.Ichor, 300);
                 target.AddBuff(BuffID.CursedInferno, 300);
