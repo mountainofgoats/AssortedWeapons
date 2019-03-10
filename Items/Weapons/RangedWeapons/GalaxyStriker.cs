@@ -32,7 +32,7 @@ namespace AssortedWeapons.Items.Weapons.RangedWeapons
 			item.autoReuse = true;
 			item.ranged = true;
 
-			item.UseSound = SoundID.Item1;
+			item.UseSound = SoundID.Item5;
 			item.value = Item.sellPrice(silver: 5);
         
         }
