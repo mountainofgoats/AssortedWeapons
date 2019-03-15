@@ -2,6 +2,7 @@ using AssortedWeapons.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedWeapons.Items.Weapons.ThrowingWeapons
 {
@@ -25,6 +26,7 @@ namespace AssortedWeapons.Items.Weapons.ThrowingWeapons
 			item.height = 26;
 			item.maxStack = 9999;
 			item.rare = 5;
+            item.useTurn = true;
 
 			item.consumable = true;
 			item.noUseGraphic = true;
@@ -37,7 +39,22 @@ namespace AssortedWeapons.Items.Weapons.ThrowingWeapons
         
         }
 
-		public override void AddRecipes()
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            for (int i = 0; i <= Main.rand.Next(4,5); i++)
+            {
+
+                Vector2 playerPosition = player.position;
+
+                float posX = playerPosition.X + Main.rand.Next(-5, 5) * 16; //because the tile size in terraria is 16x16 pxs
+                float posY = playerPosition.Y + Main.rand.Next(-5, 5) * 16;
+
+                Projectile.NewProjectile(posX, posY, speedX, speedY, type, damage, knockBack, Main.myPlayer);
+            }
+            return true;
+        }
+
+        public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.ChlorophyteBar, 1);
