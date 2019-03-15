@@ -32,23 +32,14 @@ namespace AssortedWeapons.Projectiles
             projectile.timeLeft = 600;
         }
 
-        public override void Kill(int timeLeft)
-        {
-
-            for (int i = 0; i < 1; i++)
-            {
-                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 4);
-                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-            }
-        }
-
         public override void AI()
         {
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 200; i++)
             {
 
                 NPC target = Main.npc[i];
+                float distancelimit = 650f;
 
                 if (!target.friendly)
                 {
@@ -57,7 +48,7 @@ namespace AssortedWeapons.Projectiles
                     float YCoords = target.position.Y - projectile.Center.Y;
                     float distance = (float)Math.Sqrt(Math.Pow(XCoords, 2) + Math.Pow(YCoords, 2));
 
-                    if (distance < 450f && target.active && !target.friendly && Collision.CanHitLine(projectile.Center, 0, 0, target.Center, 0, 0) && !target.immortal && projectile.timeLeft == 585) //note for Cat: projectile attacks only active targets; target is hostile; prevents the projectile from hitting any tiles; prevents the projectile from aiming at dummies
+                    if (distance < distancelimit && target.active && Collision.CanHitLine(projectile.Center, 0, 0, target.Center, 0, 0) && !target.immortal && projectile.timeLeft < 595) //note for Cat: projectile attacks only active targets; target is hostile; prevents the projectile from homing through tiles; prevents the projectile from aiming at dummies
                     {
                         distance = 3f / distance;
 
@@ -70,6 +61,16 @@ namespace AssortedWeapons.Projectiles
                 }
             }
             projectile.ai[0] += 1f;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+
+            for (int i = 0; i < 1; i++)
+            {
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 4);
+                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+            }
         }
     }
 }
