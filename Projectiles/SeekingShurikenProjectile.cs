@@ -21,19 +21,20 @@ namespace AssortedWeapons.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 26;
-            projectile.height = 26;
+            projectile.penetrate = 1;
+            projectile.ignoreWater = true;
+            projectile.width = 18;
+            projectile.height = 24;
+            projectile.aiStyle = 2;
             projectile.friendly = true;
             projectile.melee = true;
-            projectile.aiStyle = 0;
-            projectile.timeLeft = 100;
-            projectile.hostile = true;
-            projectile.tileCollide = true;
-            projectile.CloneDefaults(ProjectileID.Shuriken);
+            projectile.penetrate = 2;
+            projectile.timeLeft = 600;
         }
 
         public override void Kill(int timeLeft)
         {
+
             for (int i = 0; i < 1; i++)
             {
                 int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 4);
@@ -43,32 +44,28 @@ namespace AssortedWeapons.Projectiles
 
         public override void AI()
         {
-            bool drawHeldProjInFrontOfHeldItemAndArms = true;
 
             for (int i = 0; i < 50; i++)
             {
-
-                projectile.penetrate = 1;
-                projectile.ignoreWater = true;
 
                 NPC target = Main.npc[i];
 
                 if (!target.friendly)
                 {
 
-                    float shootToX = target.position.X + (float)target.width * 0.5f - projectile.Center.X;
-                    float shootToY = target.position.Y - projectile.Center.Y;
-                    float distance = (float)Math.Sqrt(Math.Pow(shootToX, 2) + Math.Pow(shootToY, 2));
+                    float XCoords = target.position.X + (float)target.width * 0.5f - projectile.Center.X;
+                    float YCoords = target.position.Y - projectile.Center.Y;
+                    float distance = (float)Math.Sqrt(Math.Pow(XCoords, 2) + Math.Pow(YCoords, 2));
 
-                    if (distance < 450f && target.active && !target.friendly && Collision.CanHitLine(projectile.Center, 0, 0, target.Center, 0, 0))
+                    if (distance < 450f && target.active && !target.friendly && Collision.CanHitLine(projectile.Center, 0, 0, target.Center, 0, 0) && !target.immortal && projectile.timeLeft == 585) //note for Cat: projectile attacks only active targets; target is hostile; prevents the projectile from hitting any tiles; prevents the projectile from aiming at dummies
                     {
                         distance = 3f / distance;
 
-                        shootToX *= distance * 5;
-                        shootToY *= distance * 5;
+                        XCoords *= distance * 3;
+                        YCoords *= distance * 3;
 
-                        projectile.velocity.X = shootToX;
-                        projectile.velocity.Y = shootToY;
+                        projectile.velocity.X = XCoords;
+                        projectile.velocity.Y = YCoords;
                     }
                 }
             }
